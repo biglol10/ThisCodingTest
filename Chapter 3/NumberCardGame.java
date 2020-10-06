@@ -5,17 +5,23 @@ public class NumberCardGame {
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
-        int m = sc.nextInt();
+        int k = sc.nextInt();
+
         int result = 0;
 
-        for (int i = 0; i < n; i++) {
-            int min_value = 10001;
-            for (int j = 0; j < m; j++) {
-                int x = sc.nextInt();
-                min_value = Math.min(min_value, x);
+        while (n >= k) {
+            while (n % k != 0) {
+                n -= -1;
+                result += 1;
             }
-            result = Math.max(min_value, result);
+            n /= k;
+            result += 1;
         }
-        System.out.println(result);
+        while (n > 1) {
+            n -= 1;
+            result += 1;
+        }
+
+        System.out.print(result);
     }
 }
