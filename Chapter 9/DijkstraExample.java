@@ -69,29 +69,30 @@ public class Solution {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        n = sc.nextInt();
-        m = sc.nextInt();
-        start = sc.nextInt();
-
+        n = 6;
+        m = 11;
+        start = 1;
         // 그래프 초기화
         for (int i = 0; i <= n; i++) {
             graph.add(new ArrayList<Node>());
         }
-
-        // 모든 간선 정보를 입력받기
-        for (int i = 0; i < m; i++) {
-            int a = sc.nextInt();
-            int b = sc.nextInt();
-            int c = sc.nextInt();
-            // a번 노드에서 b번 노드로 가는 비용이 c라는 의미
-            graph.get(a).add(new Node(b, c));
-        }
+        // 모든 간선 정보 입력
+        graph.get(1).add(new Node(2, 2)); // 1 번 노드에서 2번 노드로 가는데 거리가 2
+        graph.get(1).add(new Node(3, 5));
+        graph.get(1).add(new Node(4, 1));
+        graph.get(2).add(new Node(3, 3));
+        graph.get(2).add(new Node(4, 2));
+        graph.get(3).add(new Node(2, 3));
+        graph.get(3).add(new Node(6, 5));
+        graph.get(4).add(new Node(3, 3));
+        graph.get(4).add(new Node(5, 1));
+        graph.get(5).add(new Node(3, 1));
+        graph.get(5).add(new Node(6, 2));
 
         // 최단 거리 테이블을 모두 무한으로 초기화
         Arrays.fill(d, INF);
 
-        // 다익스트라 알고리즘을 수행
+        // 다익스트라 알고리즘 수행
         dijkstra(start);
 
         // 모든 노드로 가기 위한 최단 거리를 출력
@@ -99,9 +100,7 @@ public class Solution {
             // 도달할 수 없는 경우, 무한(INFINITY)이라고 출력
             if (d[i] == INF) {
                 System.out.println("INFINITY");
-            }
-            // 도달할 수 있는 경우 거리를 출력
-            else {
+            } else {
                 System.out.println(d[i]);
             }
         }
